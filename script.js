@@ -12,6 +12,7 @@ function generateGrid(size) {
 const gridcontainer = document.querySelector(".gridcontainer");
 generateGrid(16);
 for (let cell of document.getElementsByClassName("griditem")){
-    cell.onmouseover = () => cell.classList.add("hover");
-    cell.onmouseout = () => cell.classList.remove("hover");
+    cell.onmouseenter = () => cell.classList.add("hover");
+    cell.onmouseleave = () => cell.classList.remove("hover");
+    cell.onmousedown = () => cell.classList.add("painted");
 }

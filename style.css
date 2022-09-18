@@ -4,6 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: gainsboro;
 }
 
 .cell {
@@ -25,5 +26,9 @@ body {
 }
 
 .hover {
-    background-color: grey;
+    border: solid 1px grey;
+}
+
+.painted {
+    background-color: black;
 }
