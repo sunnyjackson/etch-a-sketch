@@ -13,20 +13,29 @@ function generateGrid(size) {
     for (let i = 0; i < size*size; i++) {
         let cell = document.createElement("div");
         cell.classList.add("griditem");
-        cell.onmouseenter = applyPaint;
+        cell.onmouseenter = applyColor;
+        cell.onmousedown = applyColor;
         gridcontainer.appendChild(cell);
     }
-    document.body.onmouseup = () => isPainting = false;
-    document.body.onmousedown = () => isPainting = true;
 }
 
-function applyPaint() {
+function applyColor() {
     if (isPainting) {
         this.classList.add("painted");
     }
 }
 
+function clearGrid() {
+    for(let cell of gridcontainer.childNodes) {
+        cell.removeAttribute('class');
+        cell.classList.add('griditem');
+    }
+}
+
 // Establish grid
+document.body.onmouseup = () => isPainting = false;
+document.body.addEventListener("mousedown", () => isPainting = true, {capture: true}); // capture this event, so that isPainting is set to True before trying to paint the first cell
+
 const gridcontainer = document.querySelector(".gridcontainer");
 generateGrid(DEFAULT_GRID_SIZE);
 
@@ -39,3 +48,7 @@ slider.oninput = function() {
     generateGrid(gridsize);
     slider_value.innerHTML = gridsize;
 }
+
+// Establish clear button
+let clear_button = document.getElementById("clear-button");
+clear_button.onclick = clearGrid;
