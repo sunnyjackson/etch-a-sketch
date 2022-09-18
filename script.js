@@ -1,4 +1,5 @@
 DEFAULT_GRID_SIZE = 16;
+isPainting = false;
 
 function generateGrid(size) {
     // Remove existing children cells
@@ -12,17 +13,22 @@ function generateGrid(size) {
     for (let i = 0; i < size*size; i++) {
         let cell = document.createElement("div");
         cell.classList.add("griditem");
-        cell.onmouseenter = () => cell.classList.add("hover");
-        cell.onmouseleave = () => cell.classList.remove("hover");
-        cell.onmousedown = () => cell.classList.add("painted");
+        cell.onmouseenter = applyPaint;
         gridcontainer.appendChild(cell);
+    }
+    document.body.onmouseup = () => isPainting = false;
+    document.body.onmousedown = () => isPainting = true;
+}
+
+function applyPaint() {
+    if (isPainting) {
+        this.classList.add("painted");
     }
 }
 
 // Establish grid
 const gridcontainer = document.querySelector(".gridcontainer");
 generateGrid(DEFAULT_GRID_SIZE);
-
 
 // Establish slider
 let slider = document.getElementById("myRange");
