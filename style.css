@@ -1,18 +1,15 @@
 /* Center grid container */
-
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
     align-items: center;
     background-color: gainsboro;
 }
 
-.cell {
-    height: 10px;
-    width: 10px;
-    flex: 0 0 auto;
-    background-color: white;
+h1 {
+    font-family: "JetBrains Mono",monospace;
 }
 
 .gridcontainer {
@@ -20,23 +17,15 @@ body {
     width: 500px;
     height: 500px;
     background-color: white;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
 }
-
 .griditem {
     background-color: white;
+    transition: background-color 0.5s border 0.2s;
 }
-
-.hover {
-    border: solid 1px grey;
-}
-
-.painted {
-    background-color: black;
-}
-
 
 /* Gridsize Slider */
-.slidecontainer {
+.controlpanel {
     width: 40%;
 }
 
@@ -46,8 +35,8 @@ body {
     width: 100%;
     height: 15px;
     border-radius: 5px; 
-    background: lightgray;
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    background: grey;
+    opacity: 0.1; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: .2s; /* transition on hover */
     transition: opacity .2s;
 }
@@ -63,13 +52,63 @@ body {
     width: 25px;
     height: 25px;
     border-radius: 50%; 
-    background: lightcoral;
+    background: rgba(45, 35, 66, 1);
     cursor: pointer; /* Cursor on hover */
 }
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%; 
-    background: #04AA6D;
+    background: rgba(45, 35, 66, 1);
     cursor: pointer; /* Cursor on hover */
+}
+#slider-value {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 12px;
+    color: #36395A;
+}
+
+/* Buttons */
+button {
+  align-items: center;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+button:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+.active-button {
+  background-color: #36395A;
+  color: #FCFCFD;
 }

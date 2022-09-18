@@ -59,14 +59,23 @@ function clearGrid() {
 function transitionBlackPenMode() {
     paintMode = Modes.SingleColor;
     paintColor = "black";
+    document.getElementById("black-button").classList.add("active-button");
+    document.getElementById("rainbow-button").classList.remove("active-button");
+    document.getElementById("eraser-button").classList.remove("active-button");
 }
 
 function transitionRainbowPenMode() {
     paintMode = Modes.Rainbow;
+    document.getElementById("black-button").classList.remove("active-button");
+    document.getElementById("rainbow-button").classList.add("active-button");
+    document.getElementById("eraser-button").classList.remove("active-button");
 }
 
 function transitionEraserMode() {
     paintMode = Modes.Eraser;
+    document.getElementById("black-button").classList.remove("active-button");
+    document.getElementById("rainbow-button").classList.remove("active-button");
+    document.getElementById("eraser-button").classList.add("active-button");
 }
 
 // Establish grid
@@ -78,17 +87,29 @@ generateGrid(DEFAULT_GRID_SIZE);
 // Establish slider
 let slider = document.getElementById("myRange");
 let slider_value = document.getElementById("slider-value");
-slider_value.innerHTML = slider.value;
+slider_value.innerHTML = `Portait Size: ${slider.value} x ${slider.value}`;
 slider.oninput = function() {
     gridsize = this.value;
     generateGrid(gridsize);
-    slider_value.innerHTML = gridsize;
+    slider_value.innerHTML = `Portait Size: ${gridsize} x ${gridsize}`;
+    for(let cell of gridcontainer.childNodes) {
+        cell.style.border = "solid 1px lightgrey";
+    }
+}
+slider.onmouseover = function() {
+    for(let cell of gridcontainer.childNodes) {
+        cell.style.border = "solid 1px lightgrey";
+    }
+}
+slider.onmouseout = function () {
+    for(let cell of gridcontainer.childNodes) {
+        cell.style.border = "none";
+    }
 }
 
 // Establish buttons
 document.getElementById("black-button").onclick = transitionBlackPenMode;
 document.getElementById("rainbow-button").onclick = transitionRainbowPenMode;
 document.getElementById("eraser-button").onclick = transitionEraserMode;
-
-let clear_button = document.getElementById("clear-button");
-clear_button.onclick = clearGrid;
+document.getElementById("clear-button").onclick = clearGrid;
+transitionBlackPenMode()
