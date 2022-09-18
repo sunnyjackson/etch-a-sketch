@@ -16,3 +16,11 @@ for (let cell of document.getElementsByClassName("griditem")){
     cell.onmouseleave = () => cell.classList.remove("hover");
     cell.onmousedown = () => cell.classList.add("painted");
 }
+
+// Establish slider
+let slider = document.getElementById("myRange");
+let output = document.getElementById("demo");
+output.innerHTML = slider.value;
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
